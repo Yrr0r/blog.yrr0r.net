@@ -1,0 +1,19 @@
+{
+  "name": "Yrr0r's static blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "node ./src/common.mjs",
+	"preview": "node ./src/preview.mjs",
+	"build": "node ./src/build.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "front-matter": "^4.0.2",
+    "highlight.js": "^11.2.0",
+    "marked": "^2.1.3"
+  }
+}

@@ -1,9 +1,8 @@
 console.log("main.mjs called");
 
 var config = {
-	dev: {
+	common: {
 		postdir: "./pages", // where all post articles go
-		outdir: "./public", // where generated outputs go
 		attachments: "./attachments", // where to put attached image and files.
 		templates: "./templates",
 		
@@ -11,6 +10,9 @@ var config = {
 	preview:{
 		addr: '127.0.0.1',
 		port: 8091
+	},
+	build:{
+		output: "./public", // where generated outputs go
 	}
 };
 
@@ -71,7 +73,7 @@ function procMd(filepath) {
 	return content;
 }
 
-let folders = dirWalk(config.dev.postdir);
+let folders = dirWalk(config.common.postdir);
 let articles = folders.files;
 console.log('Listings:', folders);
 
@@ -91,7 +93,7 @@ for(let nth in articles){
 // Compile articles
 let articlePages = {};
 for (let each in rendered){
-	let path = each.replace(config.dev.postdir, '');
+	let path = each.replace(config.common.postdir, '');
 	path = path.replace('.md', '.html');
 	let body = rendered[each].html;
 	let page = `
@@ -110,12 +112,12 @@ for (let each in rendered){
 let ftree = folders.folders;
 let indexes = {};
 for (let each in ftree){
-	let newname = each.replace(config.dev.postdir, '');
+	let newname = each.replace(config.common.postdir, '');
 	newname += '/index.html';
 	let subdirs = ftree[each];
 	let pagehtml = '<h1> Index page </h1>';
 	for(let each of subdirs){
-		each = each.replace(config.dev.postdir, '')
+		each = each.replace(config.common.postdir, '')
 		each = each.replace('.md', '.html');
 		let link = `<p> <a href=${each}>${each}</a> </p>`;
 		pagehtml += link;

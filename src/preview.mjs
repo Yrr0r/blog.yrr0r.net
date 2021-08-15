@@ -1,7 +1,5 @@
 import { config, compiled } from './common.mjs';
 import http from 'http';
-import url from 'url';
-import { resourceUsage } from 'process';
 
 http.createServer(handleRequest).listen(config.preview.port, config.preview.addr);
 

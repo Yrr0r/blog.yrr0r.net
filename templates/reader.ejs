@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<section class="section">
+		<div class="container is-max-desktop">
+			<% if(breadcrumb == true){ %> 
+				<div class="block">
+					<nav class="breadcrumb" aria-label="breadcrumbs">
+						<ul>
+							<li><a href="/">Home</a></li>
+							<% for(each in path){ %>
+								<li><a> <%- path[each] %> </a></li>
+							<% } %> 
+						</ul>
+					</nav>
+				</div>
+			<% } %> 
+			<div class="block">
+				<div class="content">
+					<%- body %> 
+				</div>
+			</div>
+			
+		</div>
+	</section>
+</body>

@@ -4,14 +4,15 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
-    "test": "node ./src/common.mjs",
-	"preview": "node ./src/preview.mjs",
-	"build": "node ./src/build.mjs"
+    "test": "node ./common.mjs",
+    "preview": "node ./preview.mjs",
+    "build": "node ./build.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.6",
     "front-matter": "^4.0.2",
     "highlight.js": "^11.2.0",
     "marked": "^2.1.3"

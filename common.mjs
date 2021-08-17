@@ -93,13 +93,16 @@ for(let nth in articles){
 
 // Compile articles
 let articlePages = {};
+let articleInfo = {};
 let articleTemplate = Ejs.compile(fs.readFileSync(config.common.templates + '/reader.ejs', 'utf-8'));
 for (let each in rendered){
 	let path = each.replace(config.common.postdir, '');
 	let body = rendered[each].html;
+	articleInfo[path] = rendered[each].attributes;
 	let templateParams = {
 		body: body,
 		path: path.split('/').slice(1),
+		metadata: rendered[each].attributes,
 		breadcrumb: true
 	};
 	if(path.endsWith('index.html')) templateParams.breadcrumb = false; // show breadcrumb on non-index pages
@@ -107,18 +110,20 @@ for (let each in rendered){
 	articlePages[path] = page;
 }
 console.log('Pages: ', Object.keys(articlePages));
+//console.log('Info: ', articleInfo);
 
 // Generating Indexes
 let ftree = folders.folders;
 let indexes = {};
 let listingTemplate = Ejs.compile(fs.readFileSync(config.common.templates + '/articleListing.ejs', 'utf-8'));
 for (let each in ftree){
-	let indexParams = {}; //declare parameter varialble.
+	let indexParams = {info: articleInfo}; //declare parameter varialble.
 	// if index.md exist, its path will be below.
 	let indexPath = each.replace(config.common.postdir, '') + '/index.html'; 
 	let subdirs = ftree[each];
 	indexParams.links = {};
 	for(let each of subdirs){
+		// process the list of files inside its path.
 		let mdobj = rendered[each];
 		let prop = ''; //properties
 		if(mdobj != undefined){
@@ -126,7 +131,7 @@ for (let each in ftree){
 		}
 		each = each.replace(config.common.postdir, '')
 		each = each.replace('.md', '.html');
-		if(each.endsWith('index.html')) continue; //dont consider already generated index as pages.
+		if(each.endsWith('index.html')) continue; //ignore already generated index as pages.
 		indexParams.links[each] = prop;
 	}
 	console.log(indexPath);

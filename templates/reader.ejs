@@ -14,7 +14,7 @@
 						<ul>
 							<li><a href="/">Home</a></li>
 							<% for(each in path){ %>
-								<li><a> <%- path[each] %> </a></li>
+								<li><a href="<%- '/' + path.slice(0, each+1).join('/') %> "> <%- path[each] %> </a></li>
 							<% } %> 
 						</ul>
 					</nav>

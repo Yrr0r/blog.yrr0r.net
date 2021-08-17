@@ -1,12 +1,11 @@
 ---
 date: 2021-8-8
+title: 论小药娘
 ---
 
 
 
-# Sexuality and Way of Life
-
-Yrr0r on August 08, 2021
+# Lifestyle and Training of Sexuality
 
 本文中，他，她，二种代词完全同义，同时用“它”称呼虚构的概念。
 

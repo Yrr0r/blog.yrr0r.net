@@ -13,7 +13,7 @@ function handleRequest(request, response) {
 }
 
 function fetch(url){
-	let key = url;
+	let key = decodeURI(url);
 	if(key.endsWith('/')) key += 'index.html';
 	if(! key.endsWith('.html')) key += '/index.html';
 	console.log('Access: ', key);

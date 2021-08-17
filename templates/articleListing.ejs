@@ -20,8 +20,29 @@
 			<div class="column">
 				<% for(each in links){ %> 
 					<div class="block">
-						<a href="<%- each %> "><%- each %></a> 
-						<p><%- links[each].attributes %> </p>
+						<div class="card">
+							<div class="card-header">
+								<div class="card-header-title">
+									<a href="<%- each %> ">
+										<% if(info[each] && info[each].title){ %>
+											<%- info[each].title %> 
+										<% } else { %>
+											<%- each.split('/').pop().replace('.html', '') %>
+										<% } %>
+									</a>
+								</div>
+								<div class="card-header-icon">
+									<% if(info[each] && info[each].date){ %> <p> <%- info[each].date %>  </p> <% } %>
+								</div>
+							</div>
+							<% if(info[each] && info[each].abstract ){ %>
+								<div class="card-content">
+									<div class="content">
+										<p><%- info[each].abstract %> </p>
+									</div>
+								</div>
+							<% } %>
+						</div>
 					</div>
 				<% } %> 
 			</div>

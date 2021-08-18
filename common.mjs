@@ -4,6 +4,7 @@ console.log("main.mjs called");
 var config = {
 	common: {
 		postdir: "./articles", // where all post articles go
+		assets: './assets', // static assets.
 		attachments: "./attachments", // where to put attached image and files.
 		templates: "./templates", //location of all templates.
 	},
@@ -12,11 +13,15 @@ var config = {
 		port: 8787
 	},
 	build:{
-		output: "./public", // where generated outputs go
+		output: "./public" // where generated outputs go
+	},
+	styleCompiler:{
+		scss: './styles' // where all scss files are kept to be compiled.
 	}
 };
+export {config}
 
-import fs from 'fs';
+import fs from 'fs-extra';
 import fm from 'front-matter';
 import Ejs from 'ejs';
 import marked from 'marked';
@@ -105,8 +110,14 @@ for (let each in rendered){
 		metadata: rendered[each].attributes,
 		breadcrumb: true
 	};
-	if(path.endsWith('index.html')) templateParams.breadcrumb = false; // show breadcrumb on non-index pages
-	let page = articleTemplate(templateParams); // render article pages
+	
+	let page;
+	if(path.endsWith('index.html')) {
+		//put index in without any rendering.
+		page = body;
+	} else {
+		page = articleTemplate(templateParams); // render article pages
+	}
 	articlePages[path] = page;
 }
 console.log('Pages: ', Object.keys(articlePages));
@@ -148,4 +159,4 @@ for (let each in ftree){
 //console.log('Indexes', indexes);
 
 let compiled = {...articlePages, ...indexes};
-export {config, compiled};
+export {compiled};

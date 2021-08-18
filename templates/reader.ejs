@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+	<link rel="stylesheet" href="/assets/reader.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -9,7 +9,7 @@
 	<section class="section">
 		<div class="container is-max-desktop">
 			<% if(breadcrumb == true){ %> 
-				<div class="block">
+				<div id="breadcrumb" class="block" hidden="true">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 						<ul>
 							<li><a href="/">Home</a></li>
@@ -28,4 +28,10 @@
 			
 		</div>
 	</section>
+	<script>
+		var url = new URL(window.location.href);
+		if(url.searchParams.get('bc') == 1){
+			document.getElementById('breadcrumb').hidden = false;
+		}
+	</script>
 </body>

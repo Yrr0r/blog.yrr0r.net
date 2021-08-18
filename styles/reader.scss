@@ -1,0 +1,12 @@
+@charset "utf-8";
+@import "bulma";
+
+html {
+	font-size: 12px;
+	@include tablet {
+	  font-size: 16px;
+	}
+	@include desktop {
+	  font-size: 20px;
+	}
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+	<link rel="stylesheet" href="/assets/main.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -23,7 +23,8 @@
 						<div class="card">
 							<div class="card-header">
 								<div class="card-header-title">
-									<a href="<%- each %> ">
+									<%# This is the card header with link. %> 
+									<a href="<%- each + '?bc=1' %> ">
 										<% if(info[each] && info[each].title){ %>
 											<%- info[each].title %> 
 										<% } else { %>

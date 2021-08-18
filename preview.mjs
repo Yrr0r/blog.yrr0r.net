@@ -2,24 +2,49 @@
 
 import { config, compiled } from './common.mjs';
 import http from 'http';
+import fs from 'fs-extra';
 
 http.createServer(handleRequest).listen(config.preview.port, config.preview.addr);
 console.log("Listening ", config.preview.addr,' Port ', config.preview.port)
 
 function handleRequest(request, response) {
-	response.writeHead(200, { 'Content-Type': 'text/html' });
-	response.write(fetch(request.url));
-	response.end();
+	let fetched = fetch(request.url);
+	if(fetched == undefined || fetched == 0){
+		response.writeHead(404, {});
+		response.end();
+	} else {
+		response.writeHead(200, {});
+		response.write(fetched);
+		response.end();
+	}
 }
 
 function fetch(url){
-	let key = decodeURI(url);
+	let decodedUrl = decodeURI(url);
+	decodedUrl = decodedUrl.split('?')[0]
+	let key = decodedUrl;
 	if(key.endsWith('/')) key += 'index.html';
 	if(! key.endsWith('.html')) key += '/index.html';
-	console.log('Access: ', key);
+	console.log('Lookup: ', key);
 	let result = compiled[key];
 	if(result == undefined){
-		return 'File is missing.';
+		console.log('Not exist, lookup assets.')
+		return handleResources(decodedUrl);
 	}
 	return result;
+}
+
+function handleResources(url){
+	if(url.startsWith('/assets')){
+		let assetpath = config.common.assets;
+		let filepath = assetpath + url.replace('/assets', '');
+		console.log('Get Asset: ', filepath);
+		let file = 0;
+		try{
+			file = fs.readFileSync(filepath, 'utf-8');
+		}catch(err){
+			file = 0;
+		}
+		return file;
+	}
 }

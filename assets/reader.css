@@ -10304,17 +10304,3 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   background-color: #fafafa;
   padding: 3rem 1.5rem 6rem;
 }
-
-html {
-  font-size: 12px;
-}
-@media screen and (min-width: 769px), print {
-  html {
-    font-size: 16px;
-  }
-}
-@media screen and (min-width: 1024px) {
-  html {
-    font-size: 20px;
-  }
-}

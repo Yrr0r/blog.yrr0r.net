@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node ./common.mjs",
     "preview": "node ./preview.mjs",
-    "build": "node ./build.mjs"
+    "build": "node ./build.mjs",
+	"style": "node ./styleCompiler.mjs"
   },
   "keywords": [],
   "author": "",

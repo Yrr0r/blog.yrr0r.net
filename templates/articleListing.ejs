@@ -3,6 +3,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="/assets/main.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title><%- title %> </title>
 </head>
 
 <body>
@@ -24,7 +25,8 @@
 							<div class="card-header">
 								<div class="card-header-title">
 									<%# This is the card header with link. %> 
-									<a href="<%- each + '?bc=1' %> ">
+									<a href="<%- each + '?bc=1' %> "> 
+										<%# bc=1 enables breadcrumb for reader page. %> 
 										<% if(info[each] && info[each].title){ %>
 											<%- info[each].title %> 
 										<% } else { %>

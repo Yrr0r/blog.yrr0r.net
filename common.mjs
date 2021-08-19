@@ -8,6 +8,9 @@ var config = {
 		attachments: "./attachments", // where to put attached image and files.
 		templates: "./templates", //location of all templates.
 	},
+	templates:{
+		title:'可爱的Yrr！' // Title of site listing.
+	},
 	preview:{
 		addr: '127.0.0.1',
 		port: 8787
@@ -133,6 +136,7 @@ for (let each in ftree){
 	let indexPath = each.replace(config.common.postdir, '') + '/index.html'; 
 	let subdirs = ftree[each];
 	indexParams.links = {};
+	indexParams.title = config.templates.title;
 	for(let each of subdirs){
 		// process the list of files inside its path.
 		let mdobj = rendered[each];

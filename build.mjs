@@ -22,3 +22,6 @@ for(let each in compiled){
 
 // copy all assets
 fs.copySync(config.common.assets, config.build.output + '/assets');
+
+// copy favicon
+fs.copySync('./favicon.ico', config.build.output + '/favicon.ico');

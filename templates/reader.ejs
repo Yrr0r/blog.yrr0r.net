@@ -3,6 +3,12 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="/assets/reader.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%# Generate title for this page %> 
+	<%if(metadata.title){ %>
+		<title><%- metadata.title %> </title>
+	<% }else{ %> 
+		<title>><%- path.slice(-1).join('').replace('.html', '') %> </title>
+	<% } %> 
 </head>
 
 <body>
@@ -14,7 +20,9 @@
 						<ul>
 							<li><a href="/">Home</a></li>
 							<% for(each in path){ %>
-								<li><a href="<%- '/' + path.slice(0, each+1).join('/') %> "> <%- path[each] %> </a></li>
+								<li><a href="<%- '/' + path.slice(0, each+1).join('/') %> ">
+									<%- path[each].replace('html','') %>
+								</a></li>
 							<% } %> 
 						</ul>
 					</nav>

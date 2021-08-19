@@ -28,8 +28,9 @@ function fetch(url){
 	console.log('Lookup: ', key);
 	let result = compiled[key];
 	if(result == undefined){
-		console.log('Not exist, lookup assets.')
-		return handleResources(decodedUrl);
+		console.log('Not exist, lookup assets.');
+		let res = handleResources(decodedUrl);
+		return res;
 	}
 	return result;
 }
@@ -44,6 +45,16 @@ function handleResources(url){
 			file = fs.readFileSync(filepath, 'utf-8');
 		}catch(err){
 			file = 0;
+		}
+		return file;
+	} else if(url = '/favicon.ico') {
+		// favicon.ico
+		let file;
+		try{
+			file = fs.readFileSync('./favicon.ico'); // no utf8 here since its raw file.
+			console.log('Got favicon.ico')
+		}catch(err){
+			console.log(err.stack);
 		}
 		return file;
 	}

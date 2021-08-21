@@ -8,7 +8,10 @@ var config = {
 		attachments: "./attachments", // where to put attached image and files.
 		templates: "./templates", //location of all templates.
 	},
-	templates:{
+	roots:{
+		posts: '/posts', // post root.
+	},
+	templates:{ // template render constants.
 		title:'可爱的Yrr！' // Title of site listing.
 	},
 	preview:{
@@ -29,6 +32,7 @@ import fm from 'front-matter';
 import Ejs from 'ejs';
 import marked from 'marked';
 import highlight from 'highlight.js';
+import Path from 'path';
 
 marked.setOptions({
 	renderer: new marked.Renderer(),
@@ -104,7 +108,7 @@ let articlePages = {};
 let articleInfo = {};
 let articleTemplate = Ejs.compile(fs.readFileSync(config.common.templates + '/reader.ejs', 'utf-8'));
 for (let each in rendered){
-	let path = each.replace(config.common.postdir, '');
+	let path = (config.roots.posts + each.replace(config.common.postdir, ''));
 	let body = rendered[each].html;
 	articleInfo[path] = rendered[each].attributes;
 	let templateParams = {
@@ -133,7 +137,7 @@ let listingTemplate = Ejs.compile(fs.readFileSync(config.common.templates + '/ar
 for (let each in ftree){
 	let indexParams = {info: articleInfo}; //declare parameter varialble.
 	// if index.md exist, its path will be below.
-	let indexPath = each.replace(config.common.postdir, '') + '/index.html'; 
+	let indexPath = (config.roots.posts + each.replace(config.common.postdir, '') + '/index.html' );
 	let subdirs = ftree[each];
 	indexParams.links = {};
 	indexParams.title = config.templates.title;
@@ -144,8 +148,9 @@ for (let each in ftree){
 		if(mdobj != undefined){
 			prop = mdobj.attributes;
 		}
-		each = each.replace(config.common.postdir, '')
+		each = each.replace(config.common.postdir, '');
 		each = each.replace('.md', '.html');
+		each = config.roots.posts + each; // put post root inside it.
 		if(each.endsWith('index.html')) continue; //ignore already generated index as pages.
 		indexParams.links[each] = prop;
 	}
@@ -162,5 +167,17 @@ for (let each in ftree){
 
 //console.log('Indexes', indexes);
 
-let compiled = {...articlePages, ...indexes};
-export {compiled};
+let posts = {...articlePages, ...indexes};
+console.log('Posts: ', Object.keys(posts))
+//export {posts};
+
+// render index
+let indexTemplate = Ejs.compile(fs.readFileSync(config.common.templates + '/index.ejs', 'utf-8'));
+let index = indexTemplate({
+	title: config.templates.title,
+});
+
+//temprary work, fix later:
+posts['/index.html'] = index;
+console.log('Compiled: ', Object.keys(posts))
+export {posts};

@@ -1,6 +1,8 @@
 ---
 date: 2021-8-8
 title: 一次有关跨性别的讨论
+abstract: 4个人海底捞吃火锅，其中使用男厕和使用女厕的人数比例约为1:1。
+permalink: d0e80cb7-ccc5-4ef7-879a-abd4fe12ba2e
 ---
 
 

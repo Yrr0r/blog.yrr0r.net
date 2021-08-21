@@ -1,6 +1,6 @@
 #! env node
 
-import { config, compiled } from './common.mjs';
+import { config, posts } from './common.mjs';
 import http from 'http';
 import fs from 'fs-extra';
 
@@ -26,7 +26,7 @@ function fetch(url){
 	if(key.endsWith('/')) key += 'index.html';
 	if(! key.endsWith('.html')) key += '/index.html';
 	console.log('Lookup: ', key);
-	let result = compiled[key];
+	let result = posts[key];
 	if(result == undefined){
 		console.log('Not exist, lookup assets.');
 		let res = handleResources(decodedUrl);
@@ -47,7 +47,7 @@ function handleResources(url){
 			file = 0;
 		}
 		return file;
-	} else if(url = '/favicon.ico') {
+	} else if(url == '/favicon.ico') {
 		// favicon.ico
 		let file;
 		try{

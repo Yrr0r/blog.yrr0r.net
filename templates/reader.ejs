@@ -1,45 +1,72 @@
 <!DOCTYPE html>
+
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="/assets/reader.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<%# Generate title for this page %> 
-	<%if(metadata.title){ %>
-		<title><%- metadata.title %> </title>
-	<% }else{ %> 
-		<title>><%- path.slice(-1).join('').replace('.html', '') %> </title>
-	<% } %> 
+	<%# Generate title for this page %>
+		<%if(metadata.title){ %>
+			<title>
+				<%- metadata.title %>
+			</title>
+			<% }else{ %>
+				<title>><%- path.slice(-1).join('').replace('.html', '' ) %>
+				</title>
+				<% } %>
 </head>
 
 <body>
 	<section class="section">
 		<div class="container is-max-desktop">
-			<% if(breadcrumb == true){ %> 
+			<% if(breadcrumb==true){ %>
 				<div id="breadcrumb" class="block" hidden="true">
 					<nav class="breadcrumb" aria-label="breadcrumbs">
 						<ul>
 							<li><a href="/">Home</a></li>
 							<% for(each in path){ %>
 								<li><a href="<%- '/' + path.slice(0, each+1).join('/') %> ">
-									<%- path[each].replace('html','') %>
-								</a></li>
-							<% } %> 
+										<%- path[each].replace('html','') %>
+									</a></li>
+								<% } %>
 						</ul>
 					</nav>
 				</div>
-			<% } %> 
-			<div class="block">
-				<div class="content">
-					<%- body %> 
-				</div>
-			</div>
-			
+				<% } %>
+					<div class="block">
+						<div class="content">
+							<%- body %>
+						</div>
+					</div>
+
+					<!--Comment area-->
+					<div id="disqus_thread"></div>
+
 		</div>
 	</section>
 	<script>
+		// Disqus Config.
+		var disqus_config = function () {
+			// Replace PAGE_URL with your page's canonical URL variable
+			this.page.url = url.pathname;
+		    
+			// Replace PAGE_IDENTIFIER with your page's unique identifier variable
+			this.page.identifier = "<%- metadata.permalink %>"; 
+		};
+
 		var url = new URL(window.location.href);
-		if(url.searchParams.get('bc') == 1){
+		if (url.searchParams.get('bc') == 1) {
 			document.getElementById('breadcrumb').hidden = false;
+			(function () {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+			var d = document, s = d.createElement('script');
+
+			// IMPORTANT: Replace EXAMPLE with your forum shortname!
+			s.src = 'https://yrr0r-blog.disqus.com/embed.js';
+
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+		})();
 		}
+
+		
 	</script>
 </body>

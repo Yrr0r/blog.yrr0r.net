@@ -1,3 +1,6 @@
+---
+permalink: 4ac307c9-ae6c-41aa-bfa8-e7e689479442
+---
 # Your computer isn’t yours
 
  

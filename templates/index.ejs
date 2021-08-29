@@ -6,10 +6,32 @@
 	<title><%- title %> </title>
 </head>
 
-<body>
+<body class="has-navbar-fixed-top">
 	<section class="section">
-		<div class="container">
-			<h1 class="title"><a href="/posts">查看所有文章</a></h1>
+		<div class="container is-max-desktop">
+			<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+				<div class="navbar-menu">
+					<div class="navbar-start">
+						<a class="navbar-item" href="/posts">文章归档</a>
+						<!--todo: <a class="navbar-item" href="/Timeline.html">Timeline</a> -->
+					</div>
+					
+				</div>
+			</nav>
+	
+			<h1 class="title">Yrr0r的小破站</h1>
+			<div class="columns">
+				<div class="column is-three-quarters">
+					<div class="content">
+						<%- aboutme %>
+					</div>
+				</div>
+				<div class="column"> <!-- Auto column-->
+					<p>文章列表模块施工中...</p>
+					<p>Todo: 分类</p>
+				</div>
+			</div>
+			
 		</div>
 	</section>
 </body>

@@ -44,14 +44,6 @@
 		</div>
 	</section>
 	<script>
-		// Disqus Config.
-		var disqus_config = function () {
-			// Replace PAGE_URL with your page's canonical URL variable
-			this.page.url = url.pathname;
-		    
-			// Replace PAGE_IDENTIFIER with your page's unique identifier variable
-			this.page.identifier = "<%- metadata.permalink %>"; 
-		};
 
 		var url = new URL(window.location.href);
 		if (url.searchParams.get('bc') == 1) {
@@ -67,6 +59,11 @@
 		})();
 		}
 
+		// Disqus Config.
+		var disqus_config = function () {		    
+			// Replace PAGE_IDENTIFIER with your page's unique identifier variable
+			this.page.identifier = "<%- metadata.permalink %>"; 
+		};
 		
 	</script>
 </body>

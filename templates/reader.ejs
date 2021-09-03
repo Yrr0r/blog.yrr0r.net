@@ -32,14 +32,23 @@
 					</nav>
 				</div>
 				<% } %>
-					<div class="block">
-						<div class="content">
-							<%- body %>
-						</div>
-					</div>
 
-					<!--Comment area-->
-					<div id="disqus_thread"></div>
+				<% if(metadata.date){
+					let date = new Date(metadata.date);
+				%>
+				<div class="block">
+					<div class="tag is-light"><%- date.toISOString().slice(0,10) %></div>
+				</div>
+				<% } %>
+
+				<div class="block">
+					<div class="content">
+						<%- body %>
+					</div>
+				</div>
+
+				<!--Comment area-->
+				<div id="disqus_thread"></div>
 
 		</div>
 	</section>

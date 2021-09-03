@@ -35,7 +35,11 @@
 									</a>
 								</div>
 								<div class="card-header-icon">
-									<% if(info[each] && info[each].date){ %> <p> <%- info[each].date %>  </p> <% } %>
+									<% if(info[each] && info[each].date){ 
+										let date = new Date(info[each].date);
+									%> 
+									<p> <%- date.toISOString().slice(0,10) %>  </p>
+									<% } %>
 								</div>
 							</div>
 							<% if(info[each] && info[each].abstract ){ %>

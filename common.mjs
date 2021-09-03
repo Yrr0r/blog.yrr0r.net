@@ -88,7 +88,7 @@ function procMd(filepath) {
 
 let folders = dirWalk(config.common.postdir);
 let articles = folders.files;
-console.log('Listings:', folders);
+//console.log('Listings:', folders);
 
 let rendered = {} ;
 for(let nth in articles){
@@ -128,7 +128,7 @@ for (let each in rendered){
 	}
 	articlePages[path] = page;
 }
-console.log('Pages: ', Object.keys(articlePages));
+//console.log('Pages: ', Object.keys(articlePages));
 //console.log('Info: ', articleInfo);
 
 // Generating Indexes
@@ -155,7 +155,7 @@ for (let each in ftree){
 		if(each.endsWith('index.html')) continue; //ignore already generated index as pages.
 		indexParams.links[each] = prop;
 	}
-	console.log(indexPath);
+	//console.log(indexPath);
 	if(articlePages[indexPath] != undefined){
 		// a index.md file is found, inject it.
 		indexParams.indextext = articlePages[indexPath];
@@ -169,7 +169,7 @@ for (let each in ftree){
 //console.log('Indexes', indexes);
 
 let posts = {...articlePages, ...indexes};
-console.log('Posts: ', Object.keys(posts))
+//console.log('Posts: ', Object.keys(posts))
 //export {posts};
 
 // render index

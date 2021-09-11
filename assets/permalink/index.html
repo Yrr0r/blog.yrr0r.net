@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>Permalink Processor</title>
+</head>
+<body>
+	<noscript>Javascript must be enable to use this automatic script.</noscript>
+	<div id="ui" hidden="true">
+		<p>Supply permalink search parameter to URL.</p>
+	</div>
+
+	<div id="notfound" hidden="true">
+		<h1>Wrong link.</h1>
+	</div>
+	
+	<script>
+		// process to the page
+		var url = new URL(window.location.href);
+		var srxstr = url.searchParams.get('pl');
+		console.log("Search Params: " , srxstr)
+		if(srxstr == undefined){
+			// show the page
+			document.getElementById("ui").hidden = false;
+			console.log("Permalink not included in query string.");
+		} else {
+			
+			fetch('/permalink.json', {method: 'GET'}).then(function(response){
+				return response.json();
+			}).then(function(response){
+				let addr = response[srxstr];
+				console.log("Found Path: ", addr);
+				if(addr != undefined){
+					window.location.replace(addr);
+				} else {
+					document.getElementById("notfound").hidden = false;
+				}
+			})
+			
+		}
+		
+	</script>
+</body>

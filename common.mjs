@@ -16,7 +16,7 @@ var config = {
 		title:'可爱的Yrr！' // Title of site listing.
 	},
 	preview:{
-		addr: '127.0.0.1',
+		addr: '0.0.0.0',
 		port: 8787
 	},
 	build:{
@@ -105,19 +105,26 @@ for(let nth in articles){
 }
 
 // Compile articles
+let permalinks = {};
 let articlePages = {};
 let articleInfo = {};
 let articleTemplate = Ejs.compile(fs.readFileSync(config.common.templates + '/reader.ejs', 'utf-8'));
 for (let each in rendered){
 	let path = (config.roots.posts + each.replace(config.common.postdir, ''));
 	let body = rendered[each].html;
-	articleInfo[path] = rendered[each].attributes;
+	let attrib = rendered[each].attributes
+	articleInfo[path] = attrib;
 	let templateParams = {
 		body: body,
 		path: path.split('/').slice(1),
-		metadata: rendered[each].attributes,
+		metadata: attrib,
 		breadcrumb: true
 	};
+	
+	// Process Permalinks
+	if(attrib.permalink != undefined){
+		permalinks[attrib.permalink] = path;
+	}
 	
 	let page;
 	if(path.endsWith('index.html')) {
@@ -179,6 +186,9 @@ let index = indexTemplate({
 	title: config.templates.title,
 	aboutme: marked(indextext),
 });
+
+// Put permalink JSON file:
+posts['/permalink.json'] = JSON.stringify(permalinks);
 
 //temprary work, fix later:
 posts['/index.html'] = index;

@@ -28,6 +28,15 @@
 
 ------
 
+#### Contacts
+Twitter: @yrr0r
+
+Telegram 频道:  https://t.me/joinchat/w51uyo7QZmZjY2Vl
+
+QQ群：https://jq.qq.com/?_wv=1027&k=Jh9Wgw70
+
+------
+
 #### 友链
 [冰蓝IceblueSakura!](http://icebluesakura.xyz/)
 

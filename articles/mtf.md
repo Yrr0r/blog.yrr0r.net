@@ -1,10 +1,10 @@
 ---
 permalink: 9a40aadf-44e0-4e9e-aadc-ea34e444df0b 
 date: 2021-8-8
-title: 一次有关跨性别的讨论
+title: 性别的培训
 abstract: 4个人海底捞吃火锅，其中使用男厕和使用女厕的人数比例约为1:1。
 ---
-# Lifestyle and Training of Sexuality
+# 性别的培训
 
 本文中，他，她，二种代词完全同义，同时用“它”称呼虚构的概念。
 

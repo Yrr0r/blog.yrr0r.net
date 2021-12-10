@@ -8,9 +8,24 @@
 
 <body>
 	<section class="section">
+		
+		<div id="breadcrumb-indexpage" class="block">
+			<nav class="breadcrumb" aria-label="breadcrumbs">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<% for(each in path){ %>
+						<li><a href="<%- '/' + path.slice(0, each+1).join('/') %>">
+								<%- path[each].replace('html','') %>
+						</a></li>
+					<% } %>
+				</ul>
+			</nav>
+		</div>
+
 		<div class="columns">
+			<%# Showing the brief description if applicable. %> 
 			<% if(indextext != '') { %>
-				<div class="column">
+				<div class="column is-one-third">
 					<div class="box">
 						<div class="content">
 							<%- indextext %> 
@@ -18,34 +33,54 @@
 					</div>
 				</div>
 			<% } %> 
+
+			<%# Cards linking the articles. %> 
 			<div class="column">
 				<% for(each in links){ %> 
 					<div class="block">
 						<div class="card">
 							<div class="card-header">
+
 								<div class="card-header-title">
+
 									<%# This is the card header with link. %> 
 									<a href="<%- each + '?bc=1' %> "> 
+										<%# If this is a directory %> 
+										<% if(info[each+'/index.html']){ %>
+											<span class="tag is-large">&#128193;</span>
+										<% } %>
+
 										<%# bc=1 enables breadcrumb for reader page. %> 
 										<% if(info[each] && info[each].title){ %>
 											<%- info[each].title %> 
+										<% } else if(info[each+'/index.html'] && info[each+'/index.html'].title) { %>
+											<%- info[each+'/index.html'].title %>
 										<% } else { %>
 											<%- each.split('/').pop().replace('.html', '') %>
 										<% } %>
 									</a>
 								</div>
+								<%# Show date %> 
 								<div class="card-header-icon">
-									<% if(info[each] && info[each].date){ 
-										let date = new Date(info[each].date);
-									%> 
-									<p> <%- date.toISOString().slice(0,10) %>  </p>
+									<% if(info[each] && info[each].date){ %>
+										<p> <%- new Date(info[each].date).toISOString().slice(0,10) %>  </p>
+									<% } else if(info[each+'/index.html'] && info[each+'/index.html'].date){ %>
+										<p> <%- new Date(info[each+'/index.html'].date).toISOString().slice(0,10) %>  </p>
 									<% } %>
 								</div>
 							</div>
+
+							<%#	This is about the description under the title. %>
 							<% if(info[each] && info[each].abstract ){ %>
 								<div class="card-content">
 									<div class="content">
 										<p><%- info[each].abstract %> </p>
+									</div>
+								</div>
+							<% } else if(info[each+'/index.html'] && info[each+'/index.html'].abstract){ %>
+								<div class="card-content">
+									<div class="content">
+										<p><%- info[each+'/index.html'].abstract %> </p>
 									</div>
 								</div>
 							<% } %>

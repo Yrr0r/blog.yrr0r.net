@@ -24,10 +24,10 @@
 						<ul>
 							<li><a href="/">Home</a></li>
 							<% for(each in path){ %>
-								<li><a href="<%- '/' + path.slice(0, each+1).join('/') %> ">
+								<li><a href="<%- '/' + path.slice(0, path.length - each).join('/') %> ">
 										<%- path[each].replace('html','') %>
-									</a></li>
-								<% } %>
+								</a></li>
+							<% } %>
 						</ul>
 					</nav>
 				</div>

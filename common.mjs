@@ -136,33 +136,31 @@ for (let each in rendered){
 	articlePages[path] = page;
 }
 //console.log('Pages: ', Object.keys(articlePages));
-//console.log('Info: ', articleInfo);
 
-// Generating Indexes
+// Generating listing pages
 let ftree = folders.folders;
 let indexes = {};
 let listingTemplate = Ejs.compile(fs.readFileSync(config.common.templates + '/articleListing.ejs', 'utf-8'));
 for (let each in ftree){
-	let indexParams = {info: articleInfo}; //declare parameter varialble.
+	//declare parameter variable.
+	let indexParams = {info: articleInfo}; // articleInfo is an array of all article metadata.
 	// if index.md exist, its path will be below.
 	let indexPath = (config.roots.posts + each.replace(config.common.postdir, '') + '/index.html' );
+	indexParams['path'] = indexPath.split('/').slice(1, -1);
 	let subdirs = ftree[each];
 	indexParams.links = {};
 	indexParams.title = config.templates.title;
 	for(let each of subdirs){
 		// process the list of files inside its path.
-		let mdobj = rendered[each];
-		let prop = ''; //properties
-		if(mdobj != undefined){
-			prop = mdobj.attributes;
-		}
+		
+
 		each = each.replace(config.common.postdir, '');
 		each = each.replace('.md', '.html');
 		each = config.roots.posts + each; // put post root inside it.
 		if(each.endsWith('index.html')) continue; //ignore already generated index as pages.
-		indexParams.links[each] = prop;
+		indexParams.links[each] = ''; // links that only belongs to this page
 	}
-	//console.log(indexPath);
+	//console.log('indexParams', indexParams);
 	if(articlePages[indexPath] != undefined){
 		// a index.md file is found, inject it.
 		indexParams.indextext = articlePages[indexPath];

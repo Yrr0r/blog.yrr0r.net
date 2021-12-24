@@ -58,7 +58,10 @@
 				<!--Display permalink here-->
 				<p> <a href="/assets/permalink/index.html?pl=<%- metadata.permalink %>">Permalink to this page</a> </p>
 				<!--Comment area-->
-				<div id="disqus_thread"></div>
+				<div id="disqus_thread" hidden="true">
+					<p><i>Disqus占位符</i></p>
+					<p>如果Disqus一直未载入，您的网络可能无法访问到Disqus。</p>
+				</div>
 
 		</div>
 	</section>
@@ -68,6 +71,7 @@
 		var url = new URL(window.location.href);
 		if (url.searchParams.get('bc') == 1) {
 			document.getElementById('breadcrumb').hidden = false;
+			document.getElementById('disqus_thread').hidden = false;
 			(function () {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
 				var d = document, s = d.createElement('script');
 

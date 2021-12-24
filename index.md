@@ -40,7 +40,10 @@ QQ群：https://jq.qq.com/?_wv=1027&k=Jh9Wgw70
 
 ------
 
-<div id="disqus_thread"><i>Disqus 占位符</i></div>
+<div id="disqus_thread">
+<p><i>Disqus 占位符</i></p>
+<p>如果Disqus一直未载入，你的网络可能无法访问Disqus。<p>
+</div>
 
 ------
 
@@ -51,3 +54,4 @@ QQ群：https://jq.qq.com/?_wv=1027&k=Jh9Wgw70
 
 [可爱的小梦梦](https://diary.kiyume.top/)和[他的小说！](https://amaki.kiyume.top/)
 
+一只可爱的[酚酞](https://phenol-phthalein.info/)！

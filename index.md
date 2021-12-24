@@ -1,3 +1,6 @@
+# Yrr0r的小破站
+<a class="button is-large is-success is-light" href="/posts">点这里进入目录</a>
+
 正在从typecho迁移到我自己写的网页生成器。Javascript技能最近长进了好多。
 
 日常滑水咸鱼，博客偶尔更一下，想写小说但是写不出来
@@ -34,6 +37,10 @@ Twitter: @yrr0r
 Telegram 频道:  https://t.me/joinchat/w51uyo7QZmZjY2Vl
 
 QQ群：https://jq.qq.com/?_wv=1027&k=Jh9Wgw70
+
+------
+
+<div id="disqus_thread"><i>Disqus 占位符</i></div>
 
 ------
 

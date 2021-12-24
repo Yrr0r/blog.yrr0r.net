@@ -8,7 +8,7 @@ var config = {
 		webroot: './webroot', // additional root-level files
 		attachments: "./attachments", // where to put attached image and files.
 		templates: "./templates", //location of all templates.
-		aboutpage: "./about.md", //about me on index page.
+		indexpage: "./index.md", //about me on index page.
 	},
 	roots:{
 		posts: '/posts', // post root.
@@ -179,11 +179,11 @@ let posts = {...articlePages, ...indexes};
 //export {posts};
 
 // render index
-let indextext = fs.readFileSync(config.common.aboutpage, 'utf-8');
+let indextext = fs.readFileSync(config.common.indexpage, 'utf-8');
 let indexTemplate = Ejs.compile(fs.readFileSync(config.common.templates + '/index.ejs', 'utf-8'));
 let index = indexTemplate({
 	title: config.templates.title,
-	aboutme: marked(indextext),
+	indextext: marked(indextext),
 });
 
 // Put permalink JSON file:

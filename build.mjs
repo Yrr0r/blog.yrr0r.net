@@ -39,18 +39,22 @@ for(let each in posts){
 fs.copySync(config.common.assets, config.build.output + '/assets');
 // copy all attachments
 fs.copySync(config.common.attachments, config.build.output + '/attachments');
-// copy favicon
-fs.copySync('./favicon.ico', config.build.output + '/favicon.ico');
+//copy all other important root files
+fs.copySync(config.common.webroot, config.build.output);
 
 
 // if preview, start preview server
 if(preview){
+	// Instantiate serve-static
+	let serve = servestatic(config.build.output);
+
+	// Initiate request handler
+	function handleRequest(req, res){
+		console.log(req.method, req.url);
+		serve(req, res, finalhandler(req, res));
+	}
+	
 	//setup web server to serve files
 	http.createServer(handleRequest).listen(config.preview.port, config.preview.addr);
 	console.log("Listening ", config.preview.addr,' Port ', config.preview.port)
-}
-function handleRequest(req, res){
-	let serve = servestatic(config.build.output);
-	console.log(req.method, req.url);
-	serve(req, res, finalhandler(req, res));
 }

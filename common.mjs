@@ -5,6 +5,7 @@ var config = {
 	common: {
 		postdir: "./articles", // where all post articles go
 		assets: './assets', // static assets.
+		webroot: './webroot', // additional root-level files
 		attachments: "./attachments", // where to put attached image and files.
 		templates: "./templates", //location of all templates.
 		aboutpage: "./about.md", //about me on index page.

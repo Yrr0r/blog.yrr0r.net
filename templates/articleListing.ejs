@@ -21,14 +21,14 @@
 		<div id="breadcrumb-indexpage" class="block">
 			<nav class="breadcrumb" aria-label="breadcrumbs">
 				<ul>
-					<li><a href="/">Home</a></li>
+					<li><a href="/">主页</a></li>
 					<% for(each in path){ %>
-						<li><a href="<%- '/' + path.slice(0, each+1).join('/') %>">
-								<%- path[each].replace('html','') %>
-						</a></li>
+						<li class="is-active"><a><%- path[each].replace('html','') %></a></li>
 					<% } %>
+					<li><a href="../"><code>&crarr; ../</code></a></li>
 				</ul>
 			</nav>
+			
 		</div>
 
 		<div class="columns">

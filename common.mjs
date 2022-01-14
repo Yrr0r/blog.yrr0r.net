@@ -122,6 +122,7 @@ for (let each in rendered){
 		breadcrumb: true
 	};
 	
+	
 	// Process Permalinks
 	if(attrib.permalink != undefined){
 		permalinks[attrib.permalink] = path;

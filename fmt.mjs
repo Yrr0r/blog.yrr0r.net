@@ -40,10 +40,10 @@ function dirWalk(dir) {
 		if (stat && stat.isDirectory()) {
 			/* Recurse into a subdirectory */
 			dirWalk(file); //store all listing in a variable
-		} else {
-			/* Is a file */
+		} else if(file.endsWith(".md")) {
+			/* Is a md file */
 			procfm(file);
-		}
+		} // other files not touched.
 	});
 }
 

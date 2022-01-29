@@ -1,7 +1,7 @@
 
 console.log("main.mjs called");
 
-var config = {
+const config = {
 	common: {
 		postdir: "./articles", // where all post articles go
 		assets: './assets', // static assets.
@@ -10,6 +10,9 @@ var config = {
 		templates: "./templates", //location of all templates.
 		indexpage: "./index.md", //about me on index page.
 	},
+	ignores:[
+		".DS_Store",
+	],
 	roots:{
 		posts: '/posts', // post root.
 	},
@@ -61,18 +64,34 @@ function dirWalk(dir) {
 	folders[dir] = []; //put list to obj
 	list.forEach(function (file) {
 		file = dir + '/' + file;
+
+		function ignoreTest(filename){
+			//This function tests whether a name apppears in the ignored list.
+			for (let each of config.ignores) {
+				if(filename.indexOf(each) != -1){
+					return true;
+				}
+			}
+			return false;
+		}		
+		if( ignoreTest(file) ){ 
+			// ignoring the ignored names.
+			console.log("Ignored: ", file)
+			return;
+		}
+		
 		var stat = fs.statSync(file);
 		folders[dir].push(file); //push this directory to tree.
-		if (stat && stat.isDirectory()) {
+		
+		if(stat && stat.isDirectory()) {
 			/* Recurse into a subdirectory */
 			let subCall = dirWalk(file); //store all listing in a variable
 			filelist = filelist.concat(subCall.files); //put filenames in
 			Object.assign(folders, subCall.folders); //merge returned folder
-		} else {
-			/* Is a file */
+		} else if( file.endsWith(".md") ) {
+			/* Is a md file */
 			filelist.push(file);
-			
-		}
+		} // non-md files are ignored.
 	});
 	var result = {files: filelist, folders: folders};
 	return result;

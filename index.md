@@ -13,7 +13,7 @@
 
 ------
 
-喜欢听的音乐主要是摇滚，朋克和重金属，ACG也有很多。此时我正在听的就是 Bad Religion 的 American Jesus，上一首是 Judas Priest 的 Desert Plains。
+喜欢听的音乐主要是摇滚，朋克和重金属，ACG也有很多。
 
 大概是2019年左右开始入重金属坑，最早接触的是 Metallica 和 Iron Maiden，后来知道了 Judas Priest，再后来开始听朋克，工业金属，以及在ACG里挖摇滚（x。
 
@@ -32,11 +32,11 @@
 ------
 
 #### Contacts
-Twitter: @yrr0r
+Twitter: [@yrr0r](https://twitter.com/yrr0r)
 
-Telegram 频道:  https://t.me/joinchat/w51uyo7QZmZjY2Vl
+或者
 
-QQ群：https://www.youtube.com/watch?v=dQw4w9WgXcQ
+Telegram [频道](https://t.me/+TQ-WnA9DB2k0Njg1)
 
 ------
 

@@ -23,7 +23,7 @@
 
 ------
 
-#### 正在阅读的小黄书：
+#### 小黄书：
 
 魔女之吻乃百合之味 - [百合会](https://www.yamibo.com/novel/263465) - [GitPages](https://amaki-aria.github.io/)
 
@@ -40,14 +40,7 @@ Telegram [频道](https://t.me/+TQ-WnA9DB2k0Njg1)
 
 ------
 
-<div id="disqus_thread">
-<p><i>Disqus 占位符</i></p>
-<p>如果Disqus一直未载入，你的网络可能无法访问Disqus。<p>
-</div>
-
-------
-
-#### 友链
+#### 朋友们
 [冰蓝IceblueSakura!](http://icebluesakura.xyz/)
 
 [莉特雅（魔女姐姐）！](https://blog.literalkernel.work/) 还有[他的Github站！](https://sinsong.github.io/)
@@ -55,3 +48,10 @@ Telegram [频道](https://t.me/+TQ-WnA9DB2k0Njg1)
 [可爱的小梦梦](https://diary.kiyume.top/)和[他的小说！](https://amaki.kiyume.top/)
 
 一只可爱的[酚酞](https://phenol-phthalein.info/)！
+
+------
+
+<div id="disqus_thread">
+<p><i>Disqus 占位符</i></p>
+<p>如果Disqus一直未载入，你的网络可能无法访问Disqus。<p>
+</div>

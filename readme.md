@@ -10,7 +10,7 @@ This is my static blog. It's constantly under (slowly) development and evolving.
 
 - Formatting files and adding front-matter: `npm run fmt`
 
-- Only generate a new frontmatter and print to the console: `npm run fmt gen`
+- Generate sample frontmatter and print to the console: `npm run fmt gen`
 
 - Preview site without writing anything to disk: `npm run preview`
 

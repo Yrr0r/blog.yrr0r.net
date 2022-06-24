@@ -16,7 +16,7 @@ function genhead(parsed){
 		changed = true;
 	}
 	if(parsed.frontmatter != undefined) result += parsed.frontmatter;
-	result += "\n---\n";
+	result += "\n\n---\n";
 	result += parsed.body;
 
 	if(changed == true) return result;

@@ -4,6 +4,7 @@ import { config } from "./config.mjs";
 import {v4 as uuidv4} from "uuid";
 import fm from "front-matter";
 import fs from "fs";
+import path from 'path';
 
 function genhead(parsed){
 	let attr = parsed.attributes;
@@ -64,24 +65,51 @@ function dirWalk(dir) {
 
 // detect preview mode
 var genonly = (
-	process.argv.includes('--gen') || process.argv.includes('-g') || process.argv.includes('gen')
+	process.argv.includes('gen')
 );
-if(genonly){
-	console.log("Paste the following to the beginning of new document. \n");
-	
-	let date = new Date();
-	let datestr = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`
-
-	let tmpl = `---
+let addfile = false;
+if (process.argv.includes('add')){
+	if(process.argv[process.argv.length - 1] != 'add'){
+		addfile = process.argv[process.argv.length - 1];
+	} else {
+		console.log("Invalid file name.");
+		console.log("Syntax: npm run fmt add <file>")
+		process.exit(0);
+	}
+}
+var format = (
+	process.argv.includes('fmt')
+)
+// render tmp frontmatter
+let date = new Date();
+let datestr = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`
+let tmpl = `---
 date: ${datestr}
 title: Title here or delete this line.
 abstract: Abstract here or delete this line.
 
 ---
 
-	`
-	console.log(genhead(fm(tmpl)));
-} else {
+`
+let newfm = genhead(fm(tmpl))
+
+// swiching between arguments
+if(genonly){
+	console.log("Paste the following frontmatter to the beginning of the file.")
+	console.log(newfm);
+} else if(addfile) {
+	let fn = path.join(config.common.postdir, addfile);
+	if(! fn.endsWith('.md')){fn+='.md'};
+	fs.writeFileSync(fn, newfm);
+	console.log("File created: ", fn);
+} else if(format) {
 	let stat = dirWalk(dir);
 	console.log("Done. Total ", stat[0], " Files ; Changed ", stat[1], " Files.");
+} else {
+	console.log(`
+	Usage: 'npm run fmt [gen|add|fmt]
+	gen: print content to console
+	add: add new file directly to articles
+	fmt: format already existing files
+	`)
 }
